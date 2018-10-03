@@ -3,4 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="cardview_light_background">#FFFFFFFF</color>
+    <color name="cardview_dark_background">#FF424242</color>
 </resources>
