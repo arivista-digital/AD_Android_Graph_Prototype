@@ -13,7 +13,13 @@ public class Legend implements Serializable {
     @SerializedName("name")
     @Expose
     private String name;
+
     private final static long serialVersionUID = -2277670304030380921L;
+
+    public Legend(String color, String name) {
+        this.color = color;
+        this.name = name;
+    }
 
     public String getColor() {
         return color;

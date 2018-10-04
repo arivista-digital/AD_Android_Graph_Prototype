@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class GSize implements Serializable
+public class GSize
 {
 
-@SerializedName("height")
-@Expose
 private Integer height;
-@SerializedName("width")
-@Expose
 private Double width;
-private final static long serialVersionUID = 398895610178998812L;
 
-public Integer getHeight() {
+    public GSize(Integer height, Double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    public Integer getHeight() {
 return height;
 }
 

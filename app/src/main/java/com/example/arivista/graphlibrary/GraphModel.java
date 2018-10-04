@@ -4,57 +4,50 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Karthee on 11/04/18.
  */
-public class GraphModel implements Serializable {
-    @SerializedName("direction")
-    @Expose
+public class GraphModel {
+
     private Integer direction;
-    @SerializedName("yCount")
-    @Expose
+
     private Integer yCount;
-    @SerializedName("yDifference")
-    @Expose
+
     private Integer yDifference;
-    @SerializedName("yStartValue")
-    @Expose
     private Integer yStartValue;
-    @SerializedName("image")
-    @Expose
     private String image;
-    @SerializedName("barCount")
-    @Expose
     private Integer barCount;
-    @SerializedName("xElements")
-    @Expose
-    private List<List<XElement>> xElements = null;
-    @SerializedName("alignment")
-    @Expose
+    private ArrayList<XElement> xElements = null;
     private String alignment;
-    @SerializedName("xCount")
-    @Expose
     private Integer xCount;
-    @SerializedName("gSize")
-    @Expose
     private GSize gSize;
-    @SerializedName("yLegend")
-    @Expose
     private String yLegend;
+    private ArrayList<Legend> legends = null;
 
-    @SerializedName("legends")
-    @Expose
-    private List<Legend> legends = null;
 
-    private final static long serialVersionUID = 8460401987412335131L;
+    public GraphModel(Integer direction, Integer yCount, Integer yDifference, Integer yStartValue, String image, Integer barCount, ArrayList<XElement> xElements, String alignment, Integer xCount, GSize gSize, String yLegend, ArrayList<Legend> legends) {
+        this.direction = direction;
+        this.yCount = yCount;
+        this.yDifference = yDifference;
+        this.yStartValue = yStartValue;
+        this.image = image;
+        this.barCount = barCount;
+        this.xElements = xElements;
+        this.alignment = alignment;
+        this.xCount = xCount;
+        this.gSize = gSize;
+        this.yLegend = yLegend;
+        this.legends = legends;
+    }
 
-    public List<Legend> getLegends() {
+    public ArrayList<Legend> getLegends() {
         return legends;
     }
 
-    public void setLegends(List<Legend> legends) {
+    public void setLegends(ArrayList<Legend> legends) {
         this.legends = legends;
     }
 
@@ -106,11 +99,11 @@ public class GraphModel implements Serializable {
         this.barCount = barCount;
     }
 
-    public List<List<XElement>> getXElements() {
+    public ArrayList<XElement> getXElements() {
         return xElements;
     }
 
-    public void setXElements(List<List<XElement>> xElements) {
+    public void setXElements(ArrayList<XElement> xElements) {
         this.xElements = xElements;
     }
 

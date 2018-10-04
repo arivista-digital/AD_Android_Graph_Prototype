@@ -1,10 +1,6 @@
 package com.example.arivista.graphlibrary;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,13 +18,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 public class GraphActivity extends AppCompatActivity implements View.OnTouchListener {
 
@@ -62,23 +61,34 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
     @BindView(R.id.close)
     ImageView close;
 
+    ArrayList<GraphModel> graphModel;
+    ArrayList<XElement> xElementList;
+    ArrayList<Legend> legends;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
         ButterKnife.bind(this);
-        final String coursejsonlist = loadCoursesJSONFromAsset();
 
 
-        gson = new Gson();
-        final GraphModel graphModel = gson.fromJson(coursejsonlist, GraphModel.class);
+         graphModel=new ArrayList<>();
+         xElementList=new ArrayList<>();
+         xElementList.add(new XElement("#00A19A","x1",35f));
+         xElementList.add(new XElement("#29235C","x2",15f));
+         xElementList.add(new XElement("#662483","x3",-13f));
+         xElementList.add(new XElement("#A3195B","x4",-24f));
+         legends=new ArrayList<>();
+         legends.add(new Legend("#000","X1"));
+         graphModel.add(new GraphModel(0,9,10,0,"",1,xElementList,"right",4,new GSize(388,704.17422867513608),"y",legends));
+         //graphModel = gson.fromJson(coursejsonlist, GraphModel.class);
 
-        Log.e("realm", "getCourses: " + graphModel.getImage());
+       // Log.e("realm", "getCourses: " + graphModel.getImage());
         float d = getResources().getDisplayMetrics().density;
-
+     //  for(int i=0; i<legends.size();i++){
         try {
-            for (Legend legend : graphModel.getLegends()) {
+            for (Legend legend : graphModel.get(0).getLegends()) {
                 View view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.legendlayout, null, false);
 
                 View legendColor = view.findViewById(R.id.legendbar);
@@ -98,7 +108,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
             e.printStackTrace();
         }
 
-        if (graphModel.getDirection().equals(0)) {
+        if (graphModel.get(0).getDirection().equals(0)) {
             View view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.graphline, null, false);
             FrameLayout.LayoutParams param =
                     new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -120,9 +130,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
             frameLayout.addView(view);
         }
 
-        ylegend.setText(graphModel.getYLegend());
+        ylegend.setText(graphModel.get(0).getYLegend());
 
-        final Uri uri = Uri.parse("file:///android_asset/graph/" + graphModel.getImage());
+        final Uri uri = Uri.parse("file:///android_asset/graph/" + graphModel.get(0).getImage());
         Log.e("image", String.valueOf(uri));
 
         ViewTreeObserver observer = constraintLayout.getViewTreeObserver();
@@ -131,11 +141,11 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
             public void onGlobalLayout() {
                 // TODO Auto-generated method stub
                 int headerLayoutWidth = constraintLayout.getWidth();
-                int headerLayoutHeight = constraintLayout.getHeight() / graphModel.getYCount();
+                int headerLayoutHeight = constraintLayout.getHeight() / graphModel.get(0).getYCount();
                 int LayoutHeight = constraintLayout.getHeight();
                 barheight = constraintLayout.getHeight() - 64;
 
-                double r, a = graphModel.getGSize().getHeight(), b = graphModel.getGSize().getWidth(), p;
+                double r, a = graphModel.get(0).getGSize().getHeight(), b = graphModel.get(0).getGSize().getWidth(), p;
 
                 r = (a / b);
 
@@ -156,25 +166,25 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
 
                 int y;
 
-                if (graphModel.getDirection().equals(0)) {
+                if (graphModel.get(0).getDirection().equals(0)) {
                     y = 0;
 
                 } else {
-                    y = -graphModel.getYCount() * graphModel.getYDifference();
+                    y = -graphModel.get(0).getYCount() * graphModel.get(0).getYDifference();
 
                 }
 
-                for (int i = graphModel.getYCount(); i >= 0; i--) {
+                for (int i = graphModel.get(0).getYCount(); i >= 0; i--) {
                     View view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.graphlevel, null, false);
 
 //                    customView.setBackgroundColor(getResources().getColor(R.color.cardview_dark_background));
 //                    customView.setOnTouchListener(GraphActivity.this);
 
                     TextView yvalue = view.findViewById(R.id.xvalue);
-                    if (i == graphModel.getYCount())
+                    if (i == graphModel.get(0).getYCount())
                         y = y;
                     else
-                        y = y + graphModel.getYDifference();
+                        y = y + graphModel.get(0).getYDifference();
 
                     yvalue.setText(String.valueOf(y));
 
@@ -190,25 +200,25 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                 }
 
 
-                int LayoutWidth = constraintLayout.getWidth() / graphModel.getXCount();
+                int LayoutWidth = constraintLayout.getWidth() / graphModel.get(0).getXCount();
 
-                for (int i = 0; i < graphModel.getXCount(); i++) {
+                for (int i = 0; i < graphModel.get(0).getXCount(); i++) {
 
-                    if (graphModel.getDirection().equals(0)) {
+                    if (graphModel.get(0).getDirection().equals(0)) {
 
                         View bar = LayoutInflater.from(GraphActivity.this).inflate(R.layout.bar_layout, null, false);
                         bar.setTag("bar" + i);
                         BoxedVertical customView = bar.findViewById(R.id.boxed_vertical);
 
-                        customView.setMax(graphModel.getYCount() * graphModel.getYDifference());
+                        customView.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                         customView.setStep(1);
 //                    customView.setValue(barheight);
                         try {
-                            Log.e(TAG, "onGlobalLayout: " + graphModel.getXElements()
-                                                                    .get(i).get(0).getColor());
-                            customView.setProgressColor(Color.parseColor(graphModel.getXElements()
-                                                                                 .get(i).get(0).getColor()));
+                            Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
+                                                                    .get(i).getColor());
+                            customView.setProgressColor(Color.parseColor(graphModel.get(0).getXElements()
+                                                                                 .get(i).getColor()));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -220,20 +230,20 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                                         (LayoutWidth * i) + 200, 0);
                         bar.setLayoutParams(params);
                         constraintLayout.addView(bar);
-                        if (graphModel.getBarCount() == 2) {
+                        if (graphModel.get(0).getBarCount() == 2) {
                             View bar2 = LayoutInflater.from(GraphActivity.this).inflate(R.layout.bar_layout, null, false);
                             bar2.setTag("bar2" + i);
                             BoxedVertical customView2 = bar2.findViewById(R.id.boxed_vertical);
 
-                            customView2.setMax(graphModel.getYCount() * graphModel.getYDifference());
+                            customView2.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                             customView2.setStep(1);
 //                    customView2.setValue(barheight);
                             try {
-                                Log.e(TAG, "onGlobalLayout: " + graphModel.getXElements()
-                                                                        .get(i).get(1).getColor());
-                                customView2.setProgressColor(Color.parseColor(graphModel.getXElements()
-                                                                                      .get(i).get(1).getColor()));
+                                Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
+                                                                        .get(i).getColor());
+                                customView2.setProgressColor(Color.parseColor(graphModel.get(0).getXElements()
+                                                                                      .get(i).getColor()));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -253,16 +263,16 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                         bar.setTag("bar" + i);
                         BoxedVertical customView = bar.findViewById(R.id.boxed_vertical);
 
-                        customView.setMax(graphModel.getYCount() * graphModel.getYDifference());
+                        customView.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                         customView.setStep(1);
 //                    customView.setValue(barheight);
                         try {
-                            Log.e(TAG, "onGlobalLayout: " + graphModel.getXElements()
-                                                                    .get(i).get(0).getColor());
+                            Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
+                                                                    .get(i).getColor());
 
-                            customView.setinverseProgressColor(Color.parseColor(graphModel.getXElements()
-                                                                                        .get(i).get(0).getColor()));
+                            customView.setinverseProgressColor(Color.parseColor(graphModel.get(0).getXElements()
+                                                                                        .get(i).getColor()));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -280,10 +290,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
 
                 int x = 0;
 
-                for (int i = 0; i < graphModel.getXCount(); i++) {
+                for (int i = 0; i < graphModel.get(0).getXCount(); i++) {
                     View view;
 
-                    if (graphModel.getDirection().equals(0)) {
+                    if (graphModel.get(0).getDirection().equals(0)) {
                         view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.xlevel, null, false);
                     } else {
                         view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.ixlevel, null, false);
@@ -299,9 +309,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                     else
                         x = x + 1;
 
-                    xvalue.setText(graphModel.getXElements().get(i).get(0).getXValue());
+                    xvalue.setText(graphModel.get(0).getXElements().get(i).getXValue());
 
-                    if (graphModel.getDirection().equals(0)) {
+                    if (graphModel.get(0).getDirection().equals(0)) {
                         AbsoluteLayout.LayoutParams param =
                                 new AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                         ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -332,20 +342,19 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-                    for (int j = 0; j < graphModel.getXCount(); j++) {
+                    for (int j = 0; j < graphModel.get(0).getXCount(); j++) {
                         View child = constraintLayout.getChildAt(i);
                         try {
                             if (child.getTag().equals("bar" + j)) {
 
                                 BoxedVertical customView = child.findViewById(R.id.boxed_vertical);
-                                int points = graphModel.getYCount() * graphModel.getYDifference();
-                                float actualValueInPercent = graphModel.getXElements().get(j)
-                                                                   .get(0).getActualValueInPercent();
+                                int points = graphModel.get(0).getYCount() * graphModel.get(0).getYDifference();
+                                float actualValueInPercent = graphModel.get(0).getXElements().get(j).getActualValueInPercent();
 
                                 float v1 = ((float) actualValueInPercent / (float) points);
                                 float percent = ((v1 * 100) * (barheight / 100));
 
-                                if (graphModel.getDirection().equals(0))
+                                if (graphModel.get(0).getDirection().equals(0))
                                     customView.setValue((int) percent);
                                 else
                                     customView.setValue(100 - (int) percent);
@@ -355,14 +364,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                             if (child.getTag().equals("bar2" + j)) {
 
                                 BoxedVertical customView = child.findViewById(R.id.boxed_vertical);
-                                int points = graphModel.getYCount() * graphModel.getYDifference();
-                                float actualValueInPercent = graphModel.getXElements().get(j)
-                                                                   .get(1).getActualValueInPercent();
+                                int points = graphModel.get(0).getYCount() * graphModel.get(0).getYDifference();
+                                float actualValueInPercent = graphModel.get(0).getXElements().get(j).getActualValueInPercent();
 
                                 float v1 = ((float) actualValueInPercent / (float) points);
                                 float percent = ((v1 * 100) * (barheight / 100));
 
-                                if (graphModel.getDirection().equals(0))
+                                if (graphModel.get(0).getDirection().equals(0))
                                     customView.setValue((int) percent);
                                 else
                                     customView.setValue(100 - (int) percent);
@@ -383,7 +391,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-                    for (int j = 0; j < graphModel.getXCount(); j++) {
+                    for (int j = 0; j < graphModel.get(0).getXCount(); j++) {
                         View child = constraintLayout.getChildAt(i);
                         try {
                             if (child.getTag().equals("bar" + j)) {
@@ -408,15 +416,15 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
 
     }
 
-    private void setGraphtozero(GraphModel graphModel) {
+    private void setGraphtozero(ArrayList<GraphModel> graphModel) {
         for (int i = 0; i < constraintLayout.getChildCount(); i++) {
-            for (int j = 0; j < graphModel.getXCount(); j++) {
+            for (int j = 0; j < graphModel.get(0).getXCount(); j++) {
                 View child = constraintLayout.getChildAt(i);
                 try {
                     if (child.getTag().equals("bar" + j)) {
 
                         BoxedVertical customView = child.findViewById(R.id.boxed_vertical);
-                        if (graphModel.getDirection().equals(0))
+                        if (graphModel.get(0).getDirection().equals(0))
                             customView.setValue(barheight);
                         else
                             customView.setValue(0);
@@ -430,7 +438,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                         BoxedVertical customView = child.findViewById(R.id.boxed_vertical);
 
 
-                        if (graphModel.getDirection().equals(0))
+                        if (graphModel.get(0).getDirection().equals(0))
                             customView.setValue(barheight);
                         else
                             customView.setValue(0);

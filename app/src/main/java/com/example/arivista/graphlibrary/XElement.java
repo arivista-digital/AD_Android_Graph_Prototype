@@ -19,6 +19,12 @@ public class XElement implements Serializable {
 
     private final static long serialVersionUID = -3264190176493283974L;
 
+    public XElement(String color, String xValue, Float actualValueInPercent) {
+        this.color = color;
+        this.xValue = xValue;
+        this.actualValueInPercent = actualValueInPercent;
+    }
+
     public String getColor() {
         return color;
     }
