@@ -105,18 +105,18 @@ public class BoxedVertical extends View {
         float density = getResources().getDisplayMetrics().density;
 
         // Defaults, may need to link this into theme settings
-        backgroundColor = ContextCompat.getColor(context, R.color.colorAccent);
+        backgroundColor = ContextCompat.getColor(context, android.R.color.transparent);
         Log.e("BoxedVertical", "init: " + inverseProgressColor);
         if (inverseProgressColor != 0) {
             backgroundColor = inverseProgressColor;
-            progressColor = ContextCompat.getColor(context, R.color.colorAccent);
+            progressColor = ContextCompat.getColor(context, android.R.color.transparent);
 
 //            backgroundColor = ContextCompat.getColor(context, android.R.color.holo_blue_light);
         } else {
-            backgroundColor = ContextCompat.getColor(context, R.color.colorAccent);
+            backgroundColor = ContextCompat.getColor(context, android.R.color.transparent);
 
         }
-        int textColor = ContextCompat.getColor(context, R.color.colorAccent);
+        int textColor = ContextCompat.getColor(context, android.R.color.transparent);
         mTextSize = (int) (mTextSize * density);
         mDefaultValue = mMax / 2;
 
@@ -148,7 +148,7 @@ public class BoxedVertical extends View {
                 }
             }
             if (inverseProgressColor != 0) {
-                progressColor = ContextCompat.getColor(context, R.color.colorAccent);
+                progressColor = ContextCompat.getColor(context, android.R.color.transparent);
             } else {
                 progressColor = a.getColor(R.styleable.BoxedVertical_progressColor, progressColor);
 
