@@ -81,11 +81,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
          legends=new ArrayList<>();
          legends.add(new Legend("#000","X1"));
          graphModel.add(new GraphModel(0,9,10,0,"",1,xElementList,"right",4,new GSize(388,704.17422867513608),"y",legends));
-         //graphModel = gson.fromJson(coursejsonlist, GraphModel.class);
 
-       // Log.e("realm", "getCourses: " + graphModel.getImage());
         float d = getResources().getDisplayMetrics().density;
-     //  for(int i=0; i<legends.size();i++){
         try {
             for (Legend legend : graphModel.get(0).getLegends()) {
                 View view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.legendlayout, null, false);
@@ -131,8 +128,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
 
         ylegend.setText(graphModel.get(0).getYLegend());
 
-        final Uri uri = Uri.parse("file:///android_asset/graph/" + graphModel.get(0).getImage());
-        Log.e("image", String.valueOf(uri));
+
 
         ViewTreeObserver observer = constraintLayout.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -149,12 +145,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                 r = (a / b);
 
                 p = a * b;
-                System.out.println("Aspect Ratio = " + r + "");
-                System.out.println("\nPixel = " + p + "");
+            
 
-//                int height = (int) ((a + (headerLayoutHeight - a)) * r);
                 int height = (int) (headerLayoutWidth * r);
-//                int width = (int) (b + (headerLayoutWidth - b) * r);
                 int width = (int) headerLayoutWidth;
 
 
@@ -176,8 +169,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                 for (int i = graphModel.get(0).getYCount(); i >= 0; i--) {
                     View view = LayoutInflater.from(GraphActivity.this).inflate(R.layout.graphlevel, null, false);
 
-//                    customView.setBackgroundColor(getResources().getColor(R.color.cardview_dark_background));
-//                    customView.setOnTouchListener(GraphActivity.this);
+
 
                     TextView yvalue = view.findViewById(R.id.xvalue);
                     if (i == graphModel.get(0).getYCount())
@@ -212,10 +204,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                         customView.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                         customView.setStep(1);
-//                    customView.setValue(barheight);
                         try {
-                            Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
-                                                                    .get(i).getColor());
+
                             customView.setProgressColor(Color.parseColor(graphModel.get(0).getXElements()
                                                                                  .get(i).getColor()));
                         } catch (Exception e) {
@@ -237,10 +227,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                             customView2.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                             customView2.setStep(1);
-//                    customView2.setValue(barheight);
                             try {
-                                Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
-                                                                        .get(i).getColor());
+
                                 customView2.setProgressColor(Color.parseColor(graphModel.get(0).getXElements()
                                                                                       .get(i).getColor()));
                             } catch (Exception e) {
@@ -265,10 +253,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                         customView.setMax(graphModel.get(0).getYCount() * graphModel.get(0).getYDifference());
 
                         customView.setStep(1);
-//                    customView.setValue(barheight);
                         try {
-                            Log.e(TAG, "onGlobalLayout: " + graphModel.get(0).getXElements()
-                                                                    .get(i).getColor());
+
 
                             customView.setinverseProgressColor(Color.parseColor(graphModel.get(0).getXElements()
                                                                                         .get(i).getColor()));
@@ -429,7 +415,6 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                             customView.setValue(0);
 
 
-                        //   Log.e(TAG, "toZero: " + barheight);
 
                     }
                     if (child.getTag().equals("bar2" + j)) {
@@ -460,19 +445,14 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
         int width = v.getLayoutParams().width;
         int height = v.getLayoutParams().height;
 
-//        Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
 
-//        if((x - width <= 20 && x - width > 0) ||(width - x <= 20 && width - x > 0)){
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.e(">>", "width:" + width + " height:" + height + " x:" + x + " y:" + y);
                 v.getLayoutParams().height = y;
                 v.requestLayout();
                 break;
             case MotionEvent.ACTION_MOVE:
-//                    Log.e(">>","width:"+width+" height:"+height+" x:"+x+" y:"+y);
-//                    v.getLayoutParams().height = y;
-//                    v.requestLayout();
+
                 break;
             case MotionEvent.ACTION_UP:
                 Log.e(">>", "width:" + width + " height:" + height + " x:" + x + " y:" + y);
@@ -480,36 +460,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
                 v.requestLayout();
                 break;
         }
-//        }
         return false;
     }
-
-
-
-    public String JSONFromAsset(String jsonfileName) {
-        String json = null;
-        try {
-            InputStream is = this.getAssets().open(jsonfileName);
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    private String TAG = GraphActivity.class.getSimpleName();
-    float initialX, initialY;
-
-
-    //returns courses details list
-    public String loadCoursesJSONFromAsset() {
-        return JSONFromAsset("c1-m7-p10.json");
-    }
-
 
 }
