@@ -1,0 +1,45 @@
+{
+  "direction": 0,
+  "yCount": 9,
+  "yDifference": 10,
+  "yStartValue": 0,
+  "image": "background-reveal.png",
+  "barCount": 1,
+  "xElements": [
+    [
+      {
+        "color": "#00A19A",
+        "xValue": "x1",
+        "actualValueInPercent": 35
+      }
+    ],
+    [
+      {
+        "color": "#29235C",
+        "xValue": "x2",
+        "actualValueInPercent": 15
+      }
+    ],
+    [
+      {
+        "color": "#662483",
+        "xValue": "x3",
+        "actualValueInPercent": -13
+      }
+    ],
+    [
+      {
+        "color": "#A3195B",
+        "xValue": "x4",
+        "actualValueInPercent": -24
+      }
+    ]
+  ],
+  "alignment": "right",
+  "xCount": 4,
+  "gSize": {
+    "height": 388,
+    "width": 704.17422867513608
+  },
+  "yLegend": "y"
+}
