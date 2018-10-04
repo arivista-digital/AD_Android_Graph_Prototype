@@ -19,7 +19,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        app:flexDirection="column"
         tools:context=".GraphActivity">
 
 
@@ -45,6 +44,7 @@
 
                 <View
                     android:layout_width="2dp"
+                    android:background="@color/colorPrimaryDark"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="32dp"
                />
@@ -54,6 +54,7 @@
                     android:layout_height="2dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="32dp"
+                    android:background="@color/colorPrimaryDark"
                     android:visibility="gone"/>
 
                 <AbsoluteLayout
