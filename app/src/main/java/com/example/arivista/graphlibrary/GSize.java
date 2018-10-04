@@ -5,11 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class GSize
-{
+public class GSize {
 
-private Integer height;
-private Double width;
+    private Integer height;
+    private Double width;
 
     public GSize(Integer height, Double width) {
         this.height = height;
@@ -17,19 +16,19 @@ private Double width;
     }
 
     public Integer getHeight() {
-return height;
-}
+        return height;
+    }
 
-public void setHeight(Integer height) {
-this.height = height;
-}
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
 
-public Double getWidth() {
-return width;
-}
+    public Double getWidth() {
+        return width;
+    }
 
-public void setWidth(Double width) {
-this.width = width;
-}
+    public void setWidth(Double width) {
+        this.width = width;
+    }
 
 }
