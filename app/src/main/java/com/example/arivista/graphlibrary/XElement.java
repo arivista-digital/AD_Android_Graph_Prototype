@@ -5,19 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class XElement implements Serializable {
+public class XElement {
 
-    @SerializedName("color")
-    @Expose
     private String color;
-    @SerializedName("xValue")
-    @Expose
     private String xValue;
-    @SerializedName("actualValueInPercent")
-    @Expose
     private Float actualValueInPercent;
 
-    private final static long serialVersionUID = -3264190176493283974L;
 
     public XElement(String color, String xValue, Float actualValueInPercent) {
         this.color = color;

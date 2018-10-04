@@ -72,7 +72,6 @@ public class GraphActivity extends AppCompatActivity implements View.OnTouchList
 
         ButterKnife.bind(this);
 
-
          graphModel=new ArrayList<>();
          xElementList=new ArrayList<>();
          xElementList.add(new XElement("#00A19A","x1",35f));

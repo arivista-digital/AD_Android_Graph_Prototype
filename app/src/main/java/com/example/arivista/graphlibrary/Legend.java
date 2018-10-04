@@ -5,16 +5,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Legend implements Serializable {
+public class Legend {
 
-    @SerializedName("color")
-    @Expose
     private String color;
-    @SerializedName("name")
-    @Expose
     private String name;
-
-    private final static long serialVersionUID = -2277670304030380921L;
 
     public Legend(String color, String name) {
         this.color = color;
