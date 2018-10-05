@@ -6,7 +6,7 @@
     >
 
 
-    <com.example.arivista.graphlibrary.BoxedVertical
+    <com.example.arivista.graphlibrary.custom.BoxedVertical
         android:id="@+id/boxed_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

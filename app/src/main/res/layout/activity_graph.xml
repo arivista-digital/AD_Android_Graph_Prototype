@@ -11,10 +11,10 @@
     tools:context=".GraphActivity">
 
 
-    <com.example.arivista.graphlibrary.GraphCustomView
+    <com.example.arivista.graphlibrary.custom.GraphCustomView
         android:layout_width="match_parent"
         android:id="@+id/find"
         android:layout_height="match_parent">
-    </com.example.arivista.graphlibrary.GraphCustomView>
+    </com.example.arivista.graphlibrary.custom.GraphCustomView>
 
 </RelativeLayout>

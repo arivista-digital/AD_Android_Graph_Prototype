@@ -1,8 +1,7 @@
-package com.example.arivista.graphlibrary
+package com.example.arivista.graphlibrary.custom
 
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.support.v4.content.ContextCompat
@@ -10,13 +9,9 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.*
 import android.widget.*
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.google.gson.Gson
-import java.util.ArrayList
 import android.view.MotionEvent
-
-
+import com.example.arivista.graphlibrary.R
 
 
 class BoxedVertical : View {

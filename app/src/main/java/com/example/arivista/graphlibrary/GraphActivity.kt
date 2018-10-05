@@ -1,15 +1,14 @@
 package com.example.arivista.graphlibrary
 
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.view.*
-import android.widget.*
-import butterknife.BindView
 import butterknife.ButterKnife
-import com.google.gson.Gson
+import com.example.arivista.graphlibrary.custom.GraphCustomView
+import com.example.arivista.graphlibrary.models.GSize
+import com.example.arivista.graphlibrary.models.GraphModel
+import com.example.arivista.graphlibrary.models.Legend
+import com.example.arivista.graphlibrary.models.XElement
 import java.util.*
 
 
@@ -38,8 +37,8 @@ class GraphActivity : AppCompatActivity() {
         xElementList.add(XElement("#A3195B", "x7", -24f))
         xElementList.add(XElement("#A3195B", "x8", -24f))
         xElementList.add(XElement("#A3195B", "x9", -24f))
-        xElementList.add(XElement("#A3195B", "x10",-24f))
-        xElementList.add(XElement("#A3195B", "x11",-24f))
+        xElementList.add(XElement("#A3195B", "x10", -24f))
+        xElementList.add(XElement("#A3195B", "x11", -24f))
         legends = ArrayList()
         legends.add(Legend("#000", "X1"))
         graphModel.add(GraphModel(0, 9, 10, 0, "", 1, xElementList, "right", xElementList.size, GSize(388, 704.17422867513608), "y", legends))

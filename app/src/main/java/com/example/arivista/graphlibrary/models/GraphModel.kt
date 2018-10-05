@@ -1,4 +1,4 @@
-package com.example.arivista.graphlibrary
+package com.example.arivista.graphlibrary.models
 
 import java.util.ArrayList
 

@@ -1,4 +1,4 @@
-package com.example.arivista.graphlibrary
+package com.example.arivista.graphlibrary.custom
 
 import android.content.Context
 import android.graphics.Color
@@ -6,7 +6,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.*
 import android.widget.*
-import com.google.gson.Gson
+import com.example.arivista.graphlibrary.R
+import com.example.arivista.graphlibrary.models.GraphModel
 import java.util.ArrayList
 
 class GraphCustomView : FrameLayout, View.OnTouchListener {
