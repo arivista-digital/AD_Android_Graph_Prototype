@@ -10,9 +10,11 @@
     app:flexDirection="column"
     tools:context=".GraphActivity">
 
-<com.example.arivista.graphlibrary.BoxedVertical
-    android:layout_width="match_parent"
-    android:id="@+id/bv"
-    android:layout_height="match_parent" />
+
+    <com.example.arivista.graphlibrary.GraphCustomView
+        android:layout_width="match_parent"
+        android:id="@+id/find"
+        android:layout_height="match_parent">
+    </com.example.arivista.graphlibrary.GraphCustomView>
 
 </RelativeLayout>

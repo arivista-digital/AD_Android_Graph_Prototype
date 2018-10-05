@@ -43,8 +43,9 @@ class GraphActivity : AppCompatActivity() {
         legends = ArrayList()
         legends.add(Legend("#000", "X1"))
         graphModel.add(GraphModel(0, 9, 10, 0, "", 1, xElementList, "right", xElementList.size, GSize(388, 704.17422867513608), "y", legends))
-        val customView = findViewById<BoxedVertical>(R.id.bv)
-        customView.setMain(graphModel)
+        val customView1 = findViewById<GraphCustomView>(R.id.find)
+
+        customView1.setMain(graphModel)
 
    }
 
