@@ -81,38 +81,16 @@ class BoxedVertical : View {
     private var firstRun = true
     private var progressColor: Int = 0
     private var inverseProgressColor = 0
-//    @BindView(R.id.container)
     lateinit var constraintLayout: AbsoluteLayout
-
-//    @BindView(R.id.maincontainer)
     lateinit var frameLayout: FrameLayout
-
-//    @BindView(R.id.ylegend)
     lateinit var ylegend: TextView
-
-    private val gson: Gson? = null
     private var scaleHeight: Double = 0.toDouble()
     private var scaleWidth: Double = 0.toDouble()
     private val customView: View? = null
-
-//    @BindView(R.id.btnReveal)
     lateinit var reveal: Button
-//
-//    @BindView(R.id.btnReset)
     lateinit var reset: Button
-
-
     private var barheight: Int = 0
-
-//    @BindView(R.id.legendlayout)
     lateinit var legendLayout: LinearLayout
-
-//    @BindView(R.id.close)
-//    lateinit var close: ImageView
-    //        points = points > mMax ? mMax : points;
-    //        points = points < mMin ? mMin : points;
-    //        points = mMax - points;
-    //double r = ((double)scrHeight / mMax) * points;
     var value: Int
         get() = mPoints
         set(points) {
@@ -120,9 +98,7 @@ class BoxedVertical : View {
             updateProgress(points)
 
             invalidate()
-
         }
-
     var max: Int
         get() = mMax
         set(mMax) {
@@ -130,14 +106,12 @@ class BoxedVertical : View {
                 throw IllegalArgumentException("Max should not be less than zero")
             this.mMax = mMax
         }
-
     var cornerRadius: Int
         get() = mCornerRadius
         set(mRadius) {
             this.mCornerRadius = mRadius
             invalidate()
         }
-
     var defaultValue: Int
         get() = mDefaultValue
         set(mDefaultValue) {
@@ -146,7 +120,6 @@ class BoxedVertical : View {
             this.mDefaultValue = mDefaultValue
 
         }
-
     constructor(context: Context) : super(context) {
         init(context, null)
     }
@@ -156,20 +129,11 @@ class BoxedVertical : View {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        println("INIT")
-
-
-//        ButterKnife.bind(context,view1)
         val density = resources.displayMetrics.density
-
-        // Defaults, may need to link this into theme settings
         backgroundColor = ContextCompat.getColor(context, android.R.color.transparent)
-        Log.e("BoxedVertical", "init: $inverseProgressColor")
         if (inverseProgressColor != 0) {
             backgroundColor = inverseProgressColor
             progressColor = ContextCompat.getColor(context, android.R.color.transparent)
-
-            //            backgroundColor = ContextCompat.getColor(context, android.R.color.holo_blue_light);
         } else {
             backgroundColor = ContextCompat.getColor(context, android.R.color.transparent)
 
@@ -189,14 +153,8 @@ class BoxedVertical : View {
             mDefaultValue = a.getInteger(R.styleable.BoxedVertical_defaultValue, mDefaultValue)
             mCornerRadius = a.getInteger(R.styleable.BoxedVertical_cornerRadius, mCornerRadius)
             mtextBottomPadding = a.getInteger(R.styleable.BoxedVertical_textBottomPadding, mtextBottomPadding)
-            //Images
             isImageEnabled = a.getBoolean(R.styleable.BoxedVertical_imageEnabled, isImageEnabled)
-
             if (isImageEnabled) {
-                //                Assert.assertNotNull("When images are enabled, defaultImage can not be null. Please assign a drawable in the layout XML file", a.getDrawable(R.styleable.BoxedVertical_defaultImage));
-                //                Assert.assertNotNull("When images are enabled, minImage can not be null. Please assign a drawable in the layout XML file", a.getDrawable(R.styleable.BoxedVertical_minImage));
-                //                Assert.assertNotNull("When images are enabled, maxImage can not be null. Please assign a drawable in the layout XML file", a.getDrawable(R.styleable.BoxedVertical_maxImage));
-
                 try {
                     mDefaultImage = (a.getDrawable(R.styleable.BoxedVertical_defaultImage) as BitmapDrawable).bitmap
                     mMinImage = (a.getDrawable(R.styleable.BoxedVertical_minImage) as BitmapDrawable).bitmap
@@ -204,7 +162,6 @@ class BoxedVertical : View {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-
             }
             if (inverseProgressColor != 0) {
                 progressColor = ContextCompat.getColor(context, android.R.color.transparent)

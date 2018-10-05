@@ -270,7 +270,6 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
             MotionEvent.ACTION_MOVE -> {
             }
             MotionEvent.ACTION_UP -> {
-                Log.e(">>", "width:$width height:$height x:$x y:$y")
                 v.layoutParams.height = y
                 v.requestLayout()
             }

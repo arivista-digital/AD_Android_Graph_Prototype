@@ -83,15 +83,7 @@
             app:justifyContent="center"
             app:layout_alignSelf="center">
 
-            <!--<Button-->
-                <!--android:id="@+id/btnSubmit"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="16dp"-->
-                <!--android:background="@color/colorPrimaryDark"-->
-                <!--android:text="Submit"-->
-                <!--android:textColor="@android:color/white"-->
-                <!--android:textStyle="bold"/>-->
+
 
             <Button
                 android:id="@+id/btnReveal"
