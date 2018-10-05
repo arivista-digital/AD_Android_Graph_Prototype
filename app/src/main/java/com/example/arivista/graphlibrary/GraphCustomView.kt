@@ -9,46 +9,34 @@ import android.widget.*
 import com.google.gson.Gson
 import java.util.ArrayList
 
-class GraphCustomView: FrameLayout ,View.OnTouchListener
-{
-    //    @BindView(R.id.container)
+class GraphCustomView : FrameLayout, View.OnTouchListener {
     lateinit var constraintLayout: AbsoluteLayout
 
-    //    @BindView(R.id.maincontainer)
     lateinit var frameLayout: FrameLayout
 
-    //    @BindView(R.id.ylegend)
     lateinit var ylegend: TextView
 
-    private val gson: Gson? = null
     private var scaleHeight: Double = 0.toDouble()
     private var scaleWidth: Double = 0.toDouble()
-    private val customView: View? = null
 
-    //    @BindView(R.id.btnReveal)
     lateinit var reveal: Button
-    //
-//    @BindView(R.id.btnReset)
     lateinit var reset: Button
 
 
     private var barheight: Int = 0
 
-    //    @BindView(R.id.legendlayout)
     lateinit var legendLayout: LinearLayout
+
     constructor(context: Context) : super(context) {
-        init(context, null)
+        init(context)
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init(context, attrs)
+        init(context)
     }
 
-    private fun init(context: Context, attrs: AttributeSet?) {
-        println("INIT")
-//        var view1 = LayoutInflater.from(context).inflate(R.layout.cusview, null, false)
+    private fun init(context: Context) {
         View.inflate(context, R.layout.cusview, this)
-
         frameLayout = findViewById(R.id.maincontainer)
         constraintLayout = findViewById(R.id.container)
         ylegend = findViewById(R.id.ylegend)
@@ -57,9 +45,7 @@ class GraphCustomView: FrameLayout ,View.OnTouchListener
         reveal = findViewById(R.id.btnReveal)
     }
 
-    fun setMain(graphModel: ArrayList<GraphModel>)
-    {
-
+    fun setMain(graphModel: ArrayList<GraphModel>) {
         val d = resources.displayMetrics.density
         try {
             for (legend in graphModel[0].legends!!) {
@@ -233,8 +219,6 @@ class GraphCustomView: FrameLayout ,View.OnTouchListener
                         view = LayoutInflater.from(context).inflate(R.layout.ixlevel, null, false)
 
                     }
-                    //                    customView.setBackgroundColor(getResources().getColor(R.color.cardview_dark_background));
-                    //                    customView.setOnTouchListener(GraphActivity.this);
 
                     val xvalue = view.findViewById<TextView>(R.id.xvalue)
 
@@ -265,56 +249,11 @@ class GraphCustomView: FrameLayout ,View.OnTouchListener
         })
         reset!!.setOnClickListener { setGraphtozero(graphModel) }
         reveal!!.setOnClickListener {
-            for (i in 0 until constraintLayout!!.childCount) {
-                for (j in 0 until graphModel[0].xCount!!) {
-                    val child = constraintLayout!!.getChildAt(i)
-                    try {
-                        if (child.tag == "bar$j") {
-
-                            val customView = child.findViewById<BoxedVertical>(R.id.boxed_vertical)
-                            val points = graphModel[0].yCount!! * graphModel[0].yDifference!!
-                            val actualValueInPercent = graphModel[0].xElements!![j].actualValueInPercent!!
-
-                            val v1 = actualValueInPercent / points.toFloat()
-                            val percent = v1 * 100 * (barheight / 100)
-
-                            if (graphModel[0].direction == 0)
-                                customView.value = percent.toInt()
-                            else
-                                customView.value = 100 - percent.toInt()
-
-                            val value = customView.value
-                        }
-                        if (child.tag == "bar2$j") {
-
-                            val customView = child.findViewById<BoxedVertical>(R.id.boxed_vertical)
-                            val points = graphModel[0].yCount!! * graphModel[0].yDifference!!
-                            val actualValueInPercent = graphModel[0].xElements!![j].actualValueInPercent!!
-
-                            val v1 = actualValueInPercent / points.toFloat()
-                            val percent = v1 * 100 * (barheight / 100)
-
-                            if (graphModel[0].direction == 0)
-                                customView.value = percent.toInt()
-                            else
-                                customView.value = 100 - percent.toInt()
-
-                            val value = customView.value
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-
-                }
-            }
+            revealAnswer(graphModel)
         }
 
-
-//    fun onTouch(v: View, event: MotionEvent): Boolean {
-//
-//}
-
     }
+
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         val x = event!!.x.toInt()
         val y = event.y.toInt()
@@ -335,7 +274,56 @@ class GraphCustomView: FrameLayout ,View.OnTouchListener
                 v.requestLayout()
             }
         }
-        return false     }
+        return false
+    }
+
+    //Reveal answers
+    private fun revealAnswer(graphModel:ArrayList<GraphModel>){
+        for (i in 0 until constraintLayout!!.childCount) {
+            for (j in 0 until graphModel[0].xCount!!) {
+                val child = constraintLayout!!.getChildAt(i)
+                try {
+                    if (child.tag == "bar$j") {
+
+                        val customView = child.findViewById<BoxedVertical>(R.id.boxed_vertical)
+                        val points = graphModel[0].yCount!! * graphModel[0].yDifference!!
+                        val actualValueInPercent = graphModel[0].xElements!![j].actualValueInPercent!!
+
+                        val v1 = actualValueInPercent / points.toFloat()
+                        val percent = v1 * 100 * (barheight / 100)
+
+                        if (graphModel[0].direction == 0)
+                            customView.value = percent.toInt()
+                        else
+                            customView.value = 100 - percent.toInt()
+
+                        val value = customView.value
+                    }
+                    if (child.tag == "bar2$j") {
+
+                        val customView = child.findViewById<BoxedVertical>(R.id.boxed_vertical)
+                        val points = graphModel[0].yCount!! * graphModel[0].yDifference!!
+                        val actualValueInPercent = graphModel[0].xElements!![j].actualValueInPercent!!
+
+                        val v1 = actualValueInPercent / points.toFloat()
+                        val percent = v1 * 100 * (barheight / 100)
+
+                        if (graphModel[0].direction == 0)
+                            customView.value = percent.toInt()
+                        else
+                            customView.value = 100 - percent.toInt()
+
+                        val value = customView.value
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }
+        }
+    }
+
+
     private fun setGraphtozero(graphModel: ArrayList<GraphModel>) {
         for (i in 0 until constraintLayout!!.childCount) {
             for (j in 0 until graphModel[0].xCount!!) {
