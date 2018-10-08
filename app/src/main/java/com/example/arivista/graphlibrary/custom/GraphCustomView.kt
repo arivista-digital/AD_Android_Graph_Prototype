@@ -101,23 +101,12 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                 val LayoutHeight = constraintLayout!!.height
                 barheight = constraintLayout!!.height - 64
 
-                val r: Double
-                val a = graphModel[0].gSize!!.height!!.toDouble()
-                val b = graphModel[0].gSize!!.width!!
-                val p: Double
 
-                r = a / b
-
-                p = a * b
-
-
-                val height = (headerLayoutWidth * r).toInt()
 
 
                 constraintLayout!!.viewTreeObserver.removeGlobalOnLayoutListener(this)
 
-                scaleHeight = height / a
-                scaleWidth = headerLayoutWidth / b
+
 
                 var y: Int
 
@@ -158,9 +147,9 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
-                        val params = AbsoluteLayout.LayoutParams(120,
+                        val params = AbsoluteLayout.LayoutParams(80,
                                 ViewGroup.LayoutParams.MATCH_PARENT,
-                                LayoutWidth * i + 200, 0)
+                                LayoutWidth * i , 0)
                         bar.layoutParams = params
                         constraintLayout!!.addView(bar)
                         if (graphModel[0].barCount == 2) {
