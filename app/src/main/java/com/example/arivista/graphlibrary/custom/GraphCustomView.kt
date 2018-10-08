@@ -135,7 +135,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         //bar value
                         val params = AbsoluteLayout.LayoutParams(60,
                                 ViewGroup.LayoutParams.MATCH_PARENT,
-                                140 * i +120, 0)
+                                140 * i +140, 0)
                         bar.layoutParams = params
                         constraintLayout!!.addView(bar)
                         if (graphModel[0].barCount == 2) {
@@ -209,7 +209,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         //x bar value
                         val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                                140 * i +140, LayoutHeight - 60)
+                                140 * i +150, LayoutHeight - 60)
                         view.layoutParams = param
                         constraintLayout!!.addView(view)
                     } else {
