@@ -3,11 +3,8 @@ package com.example.arivista.graphlibrary
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
 import com.example.arivista.graphlibrary.custom.GraphCustomView
-import com.example.arivista.graphlibrary.models.GSize
 import com.example.arivista.graphlibrary.models.GraphModel
-import com.example.arivista.graphlibrary.models.Legend
 import com.example.arivista.graphlibrary.models.XElement
 import java.util.*
 
@@ -15,7 +12,7 @@ import java.util.*
 class GraphActivity : AppCompatActivity() {
     internal lateinit var graphModel: ArrayList<GraphModel>
     internal lateinit var xElementList: ArrayList<XElement>
-    internal lateinit var legends: ArrayList<Legend>
+//    internal lateinit var legends: ArrayList<Legend>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
@@ -33,9 +30,8 @@ class GraphActivity : AppCompatActivity() {
         xElementList.add(XElement("#A3195B", "x9", -24f))
         xElementList.add(XElement("#A3195B", "x10",-24f))
         xElementList.add(XElement("#A3195B", "x11",-24f))
-        legends = ArrayList()
-        legends.add(Legend("#000", "X1"))
-        graphModel.add(GraphModel(0, 3, 5, 0, 1, xElementList, "right", xElementList.size, "y", legends))
+//        legends.add(Legend("#000", "X1"))
+        graphModel.add(GraphModel(0, 11, 2, 0, 1, xElementList, "right", xElementList.size, "y"))
         val customView1 = findViewById<GraphCustomView>(R.id.find)
         customView1.setMain(graphModel)
    }

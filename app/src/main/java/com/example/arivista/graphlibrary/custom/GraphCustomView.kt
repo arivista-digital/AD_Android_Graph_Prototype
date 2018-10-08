@@ -48,37 +48,22 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
 
     fun setMain(graphModel: ArrayList<GraphModel>) {
         val d = resources.displayMetrics.density
-        try {
-            for (legend in graphModel[0].legends!!) {
-                val view = LayoutInflater.from(context).inflate(R.layout.legendlayout, null, false)
 
-                val legendColor = view.findViewById<View>(R.id.legendbar)
-                val legendName = view.findViewById<TextView>(R.id.legnedname)
-                legendColor.setBackgroundColor(Color.parseColor(legend.color))
-                legendName.text = legend.name
-
-                val param = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT)
-                view.layoutParams = param
-
-                legendLayout!!.addView(view)
-
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
 
         if (graphModel[0].direction == 0) {
-//            val view = LayoutInflater.from(context).inflate(R.layout.graphline, null, false)
             val view = View.inflate(context, R.layout.graphline, null)
             val param = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     (2 * d).toInt())
             view.layoutParams = param
+
+            //bottom view added
             param.setMargins(0, 0, 0, (32 * d).toInt())
             param.gravity = Gravity.BOTTOM
 
             frameLayout!!.addView(view)
-        } else {
+        }
+        //up to down bar
+        else {
             val view = LayoutInflater.from(context).inflate(R.layout.graphline, null, false)
             val param = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     (2 * d).toInt())
@@ -88,9 +73,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
             view.layoutParams = param
             frameLayout!!.addView(view)
         }
-
-        ylegend!!.text = graphModel[0].yLegend
-
+//        ylegend!!.text = "2"
 
         val observer = constraintLayout!!.viewTreeObserver
         observer.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
@@ -99,7 +82,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                 val headerLayoutWidth = constraintLayout!!.width
                 val headerLayoutHeight = constraintLayout!!.height / graphModel[0].yCount!!
                 val LayoutHeight = constraintLayout!!.height
-                barheight = constraintLayout!!.height - 64
+                barheight = constraintLayout!!.height
 
 
 
@@ -127,10 +110,12 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         y = y + graphModel[0].yDifference!!
                     }
                     yvalue.text = y.toString()
+
+                    //y bar value
                     val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT,
-                            10, headerLayoutHeight * i - 10)
-                    view.layoutParams = param
+                            20, 80 * i )
+                    view.layoutParams = param as ViewGroup.LayoutParams?
                     if (y != 0)
                         constraintLayout!!.addView(view)
                 }
@@ -147,9 +132,10 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
-                        val params = AbsoluteLayout.LayoutParams(80,
+                        //bar value
+                        val params = AbsoluteLayout.LayoutParams(60,
                                 ViewGroup.LayoutParams.MATCH_PARENT,
-                                LayoutWidth * i , 0)
+                                140 * i +120, 0)
                         bar.layoutParams = params
                         constraintLayout!!.addView(bar)
                         if (graphModel[0].barCount == 2) {
@@ -168,7 +154,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                             }
                             val params2 = AbsoluteLayout.LayoutParams(120,
                                     ViewGroup.LayoutParams.MATCH_PARENT,
-                                    LayoutWidth * i + 340, 0)
+                                    LayoutWidth * i + 20, 0)
                             bar2.layoutParams = params2
                             constraintLayout!!.addView(bar2)
                         }
@@ -187,7 +173,6 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
-
 
                         val params = AbsoluteLayout.LayoutParams(120,
                                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -217,12 +202,14 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                     else
                         x = x + 1
 
+                    //set x name
                     xvalue.text = graphModel[0].xElements!![i].xValue
 
                     if (graphModel[0].direction == 0) {
+                        //x bar value
                         val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                                LayoutWidth * i + 230, LayoutHeight - 60)
+                                140 * i +140, LayoutHeight - 60)
                         view.layoutParams = param
                         constraintLayout!!.addView(view)
                     } else {

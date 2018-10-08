@@ -10,6 +10,7 @@
 
     <View
         android:layout_width="8dp"
+        android:visibility="gone"
         android:layout_height="2dp"
         android:layout_gravity="center"
         android:layout_margin="12dp"
