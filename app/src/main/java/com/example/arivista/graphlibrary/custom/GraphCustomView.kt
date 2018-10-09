@@ -213,7 +213,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         //x bar value
                         val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                                graphModel[0].xDifference!! * i +150, LayoutHeight - 40)
+                                graphModel[0].xDifference!! * i +150, LayoutHeight-50)
                         view.layoutParams = param
                         constraintLayout!!.addView(view)
                     } else {

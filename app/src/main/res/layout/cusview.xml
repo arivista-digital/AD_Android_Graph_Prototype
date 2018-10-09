@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<HorizontalScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="horizontal"
     android:orientation="vertical"
-    android:padding="16dp"
-    app:flexDirection="column"
-
+    android:padding="2dp"
     tools:context=".GraphActivity">
-
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,13 +21,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="2dp"
         tools:context=".GraphActivity">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="horizontal"
+            android:nestedScrollingEnabled="true"
             android:layout_weight="1"
             >
 
@@ -41,7 +45,7 @@
                 android:id="@+id/maincontainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="32dp">
+                android:layout_margin="4dp">
 
                 <View
                     android:layout_width="2dp"
@@ -54,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@color/colorPrimaryDark"
                     android:visibility="gone"/>
 
@@ -64,6 +68,7 @@
                     android:layout_height="match_parent">
                 </AbsoluteLayout>
 
+
             </FrameLayout>
         </LinearLayout>
 
@@ -71,6 +76,8 @@
             android:id="@+id/legendlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:nestedScrollingEnabled="true"
             android:orientation="horizontal">
 
         </LinearLayout>
@@ -114,6 +121,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_margin="12dp"
         app:layout_alignSelf="flex_end"/>
 </FrameLayout>
+</HorizontalScrollView>
