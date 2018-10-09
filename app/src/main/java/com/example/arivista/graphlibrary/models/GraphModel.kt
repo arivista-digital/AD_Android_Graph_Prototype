@@ -5,7 +5,7 @@ import java.util.ArrayList
 /**
  * Created by Karthee on 11/04/18.
  */
-class GraphModel(var direction: Int?, var yCount: Int?, var yDifference: Int?, var yStartValue: Int?, var barCount: Int?, xElements: ArrayList<XElement>, var alignment: String?, var xCount: Int?,  var yLegend: String?) {
+class GraphModel(var direction: Int?, var yCount: Int?, var yDifference: Int?, var yStartValue: Int?, var barCount: Int?, xElements: ArrayList<XElement>, var alignment: String?, var xCount: Int?,  var yLegend: String?,var xDifference:Int?,var barWidth:Int?) {
     var xElements: ArrayList<XElement>? = null
 
 

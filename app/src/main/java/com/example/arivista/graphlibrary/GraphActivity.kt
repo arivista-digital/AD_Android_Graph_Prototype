@@ -31,7 +31,7 @@ class GraphActivity : AppCompatActivity() {
         xElementList.add(XElement("#A3195B", "x10",-24f))
         xElementList.add(XElement("#A3195B", "x11",-24f))
 //        legends.add(Legend("#000", "X1"))
-        graphModel.add(GraphModel(0, 11, 2, 0, 1, xElementList, "right", xElementList.size, "y"))
+        graphModel.add(GraphModel(0, 10, 2, 0, 1, xElementList, "right", xElementList.size, "y",140,60))
         val customView1 = findViewById<GraphCustomView>(R.id.find)
         customView1.setMain(graphModel)
    }

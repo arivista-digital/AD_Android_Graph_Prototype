@@ -104,17 +104,21 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                 for (i in graphModel[0].yCount!! downTo 0) {
                     val view = LayoutInflater.from(context).inflate(R.layout.graphlevel, null, false)
                     val yvalue = view.findViewById<TextView>(R.id.xvalue)
+
+                    yvalue.text = y.toString()
+
                     if (i == graphModel[0].yCount)
                         y = y
                     else {
                         y = y + graphModel[0].yDifference!!
                     }
-                    yvalue.text = y.toString()
+                    //y text set
+
 
                     //y bar value
                     val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT,
-                            20, 80 * i )
+                            20, headerLayoutHeight * i )
                     view.layoutParams = param as ViewGroup.LayoutParams?
                     if (y != 0)
                         constraintLayout!!.addView(view)
@@ -133,9 +137,9 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                             e.printStackTrace()
                         }
                         //bar value
-                        val params = AbsoluteLayout.LayoutParams(60,
+                        val params = AbsoluteLayout.LayoutParams(graphModel[0].barWidth!!,
                                 ViewGroup.LayoutParams.MATCH_PARENT,
-                                140 * i +140, 0)
+                                graphModel[0].xDifference!! * i +140, 0)
                         bar.layoutParams = params
                         constraintLayout!!.addView(bar)
                         if (graphModel[0].barCount == 2) {
@@ -209,7 +213,7 @@ class GraphCustomView : FrameLayout, View.OnTouchListener {
                         //x bar value
                         val param = AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                                140 * i +150, LayoutHeight - 60)
+                                graphModel[0].xDifference!! * i +150, LayoutHeight - 40)
                         view.layoutParams = param
                         constraintLayout!!.addView(view)
                     } else {
