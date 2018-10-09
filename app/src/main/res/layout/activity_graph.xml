@@ -13,7 +13,7 @@
 
     <com.example.arivista.graphlibrary.custom.GraphCustomView
         android:layout_width="match_parent"
-        android:id="@+id/find"
+        android:id="@+id/arivista_custom_view"
         android:layout_height="match_parent">
     </com.example.arivista.graphlibrary.custom.GraphCustomView>
 
