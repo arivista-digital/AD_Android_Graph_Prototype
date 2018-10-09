@@ -23,6 +23,7 @@
         <attr name="touchDisabled" format="boolean" />
         <attr name="textEnabled" format="boolean" />
         <attr name="imageEnabled" format="boolean" />
+
     </declare-styleable>
 
 </resources>

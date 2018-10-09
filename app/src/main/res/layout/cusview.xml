@@ -5,17 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    app:flexDirection="column"
+
+    tools:context=".GraphActivity">
+
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/cardview_light_background"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".GraphActivity">
@@ -43,24 +45,23 @@
 
                 <View
                     android:layout_width="2dp"
+                    android:background="@color/colorPrimaryDark"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="32dp"
-                    android:background="@color/cardview_dark_background"/>
+                    />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="32dp"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrimaryDark"
                     android:visibility="gone"/>
 
                 <AbsoluteLayout
                     android:id="@+id/container"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                 </AbsoluteLayout>
 
             </FrameLayout>
@@ -74,24 +75,17 @@
 
         </LinearLayout>
 
-        <RelativeLayout
+        <com.google.android.flexbox.FlexboxLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:justifyContent="center"
+            app:layout_alignSelf="center">
+
+
 
             <Button
-                android:id="@+id/btnSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="Submit"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"/>
-
-            <Button
-                android:layout_toRightOf="@+id/btnSubmit"
                 android:id="@+id/btnReveal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +98,6 @@
                 android:textStyle="bold"/>
 
             <Button
-                android:layout_toRightOf="@+id/btnReveal"
                 android:id="@+id/btnReset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -113,7 +106,7 @@
                 android:text="Reset"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"/>
-        </RelativeLayout>
+        </com.google.android.flexbox.FlexboxLayout>
     </LinearLayout>
 
     <ImageView
@@ -121,5 +114,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_margin="12dp" />
+        android:layout_margin="12dp"
+        app:layout_alignSelf="flex_end"/>
 </FrameLayout>
