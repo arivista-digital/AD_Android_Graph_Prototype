@@ -64,14 +64,14 @@
 
 * Custom view object creation
 ```
-      val customView1 = findViewById<GraphCustomView>(R.id.arivista_custom_view)
-      customView1.setMain(graphModel)
+      val customView = findViewById<GraphCustomView>(R.id.arivista_custom_view)
+      customView.setMain(graphModel)
 ```
 
 
 ### Screenshots ###
 
- ![Alt text](/app/screenshots/mcq.gif)
+ ![Alt text](/app/screenshots/graph.gif)
 
 ### Links ###
 * [Arivista Digital Pvt Ltd](https://www.arivistadigital.org/ "Arivista")
